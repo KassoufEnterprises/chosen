@@ -372,7 +372,10 @@ class Chosen extends AbstractChosen
       else
         this.single_set_selected_text(this.choice_label(item))
 
-      unless @is_multiple && (!@hide_results_on_select || (evt.metaKey or evt.ctrlKey))
+      if @is_multiple && (!@hide_results_on_select || (evt.metaKey or evt.ctrlKey))
+        @search_field.val("")
+        @winnow_results()
+      else
         this.results_hide()
         this.show_search_field_default()
 
